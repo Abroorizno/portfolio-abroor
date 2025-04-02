@@ -125,10 +125,7 @@
     <!-- Components -->
     <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
     <li class="menu-item">
-        <a
-            href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-            target="_blank"
-            class="menu-link">
+        <a href="https://wa.me/6282113107659" target="_blank" class="menu-link">
             <i class="menu-icon tf-icons bx bx-support"></i>
             <div data-i18n="Support">Support</div>
         </a>

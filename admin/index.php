@@ -7,6 +7,7 @@ if (!isset($_SESSION["email"])) {
     header("Location: ../session/login.php");
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>

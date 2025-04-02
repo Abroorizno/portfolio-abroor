@@ -40,13 +40,19 @@ $resultService = mysqli_fetch_all($sqlService, MYSQLI_ASSOC);
 
 $sqlSerName = mysqli_query($conn, "SELECT service_name FROM services ORDER BY id ASC");
 $resultSerName = mysqli_fetch_all($sqlSerName, MYSQLI_ASSOC);
-$serviceNames = implode(',', array_column($resultSerName, 'service_name')); 
+$serviceNames = implode(',', array_column($resultSerName, 'service_name'));
 // "implode()" Menggabungkan array tersebut menjadi satu string
 // "array_column()" Mengambil nilai dari kolom 'service_name' dari array $resultSerName
 
 $sqlProject = mysqli_query($conn, "SELECT * FROM portfolio ORDER BY id DESC");
 $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
 ?>
+
+<!-- <style>
+    .custom-margin {
+        margin-top: 100px;
+    }
+</style> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -200,10 +206,10 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
                                     <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo isset($resultProfile['email']) ? $resultProfile['email'] : 'Select Profile'; ?>
                             </div>
                         </div>
-                        <p class="py-3">
+                        <!-- <p class="py-3">
                             Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
                             Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque.
-                        </p>
+                        </p> -->
                     </div>
                 </div>
 

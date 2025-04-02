@@ -11,7 +11,8 @@ if (isset($_POST['login'])) {
 
     if (mysqli_num_rows($query) > 0) {
         $_SESSION['email'] = $email;
-        $_SESSION['fullname'] = $rows['name'];
+        $_SESSION['fullname'] = $rows['username'];
+        $_SESSION['photo'] = $rows['photo'];
         header("Location: ../admin/index.php?login=succeed");
     } else {
         echo "<script>alert('EMAIL DAN PASSWORD SALAH!')</script>";
