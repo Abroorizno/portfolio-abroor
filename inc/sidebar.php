@@ -134,10 +134,7 @@
         </a>
     </li>
     <li class="menu-item">
-        <a
-            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-            target="_blank"
-            class="menu-link">
+        <a href="https://github.com/Abroorizno/portfolio-abroor" target="_blank" class="menu-link">
             <i class="menu-icon tf-icons bx bx-file"></i>
             <div data-i18n="Documentation">Documentation</div>
         </a>

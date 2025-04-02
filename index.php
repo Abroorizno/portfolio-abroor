@@ -38,6 +38,12 @@ $resultExpe = mysqli_fetch_all($sqlExpe, MYSQLI_ASSOC);
 $sqlService = mysqli_query($conn, "SELECT * FROM services ORDER BY id DESC");
 $resultService = mysqli_fetch_all($sqlService, MYSQLI_ASSOC);
 
+$sqlSerName = mysqli_query($conn, "SELECT service_name FROM services ORDER BY id ASC");
+$resultSerName = mysqli_fetch_all($sqlSerName, MYSQLI_ASSOC);
+$serviceNames = implode(',', array_column($resultSerName, 'service_name')); 
+// "implode()" Menggabungkan array tersebut menjadi satu string
+// "array_column()" Mengambil nilai dari kolom 'service_name' dari array $resultSerName
+
 $sqlProject = mysqli_query($conn, "SELECT * FROM portfolio ORDER BY id DESC");
 $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
 ?>
@@ -48,7 +54,7 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - MyResume Bootstrap Template</title>
+    <title>Welcome to My Portfolio! - Abroor Rizky</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -83,9 +89,9 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
 <body class="index-page">
 
     <!-- Audio Element -->
-    <audio id="backsound" loop>
+    <!-- <audio id="backsound" loop>
         <source src="assets/uploads/backsound/how-to-train-dragon.mp3" type="audio/mpeg">
-    </audio>
+    </audio> -->
 
 
     <!-- <audio id="backsound" autoplay loop muted>
@@ -121,7 +127,7 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
                     <div class="col-lg-9">
                         <h2><?php echo isset($resultProfile['name']) ? $resultProfile['name'] : 'Select Profile'; ?></h2>
                         <?php if (isset($resultProfile['name'])) { ?>
-                            <p>I'm a <span class="typed" data-typed-items="Developer, Freelancer, Photographer, Videographer"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+                            <p>I'm a <span class="typed" data-typed-items="<?= $serviceNames ?>"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
                             <div class="social-links">
                                 <!-- <a href="#"><i class="bi bi-twitter-x"></i></a> -->
                                 <!-- <a href="#"><i class="bi bi-facebook"></i></a> -->
@@ -206,9 +212,9 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
         </section><!-- /About Section -->
 
         <!-- Stats Section -->
-        <section id="stats" class="stats section">
+        <!-- <section id="stats" class="stats section">
 
-            <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="row gy-4">
 
@@ -246,9 +252,10 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
 
                 </div>
 
-            </div> -->
+            </div>
 
-        </section><!-- /Stats Section -->
+        </section> -->
+        <!-- /Stats Section -->
 
         <!-- Skills Section -->
         <section id="skills" class="skills section">
@@ -300,8 +307,6 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
                         </div> -->
 
                 </div>
-
-            </div>
 
             </div>
 
@@ -837,6 +842,21 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
 
                     <div class="col-lg-8">
                         <form action="" method="post" data-aos="fade-up" data-aos-delay="200">
+                            <?php if (isset($_GET['messages'])) : ?>
+                                <?php if ($_GET['messages'] == 'sended') : ?>
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <i class="bi bi-check-circle me-2"></i>
+                                        <strong>Success!</strong> Your message has been sent.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php elseif ($_GET['messages'] == 'failed') : ?>
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <i class="bi bi-x-circle me-2"></i>
+                                        <strong>Failed!</strong> Your message failed to send.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif ?>
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
@@ -919,7 +939,7 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
 
-    <script>
+    <!-- <script>
         let audio = document.getElementById("backsound");
         let observer = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
@@ -928,7 +948,7 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
         });
 
         observer.observe(document.body);
-    </script>
+    </script> -->
 
 </body>
 
