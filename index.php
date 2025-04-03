@@ -35,7 +35,7 @@ $resultSkill = mysqli_fetch_all($sqlSkill, MYSQLI_ASSOC);
 $sqlExpe = mysqli_query($conn, "SELECT * FROM resume ORDER BY id DESC");
 $resultExpe = mysqli_fetch_all($sqlExpe, MYSQLI_ASSOC);
 
-$sqlService = mysqli_query($conn, "SELECT * FROM services ORDER BY id DESC");
+$sqlService = mysqli_query($conn, "SELECT * FROM services ORDER BY id ASC");
 $resultService = mysqli_fetch_all($sqlService, MYSQLI_ASSOC);
 
 $sqlSerName = mysqli_query($conn, "SELECT service_name FROM services ORDER BY id ASC");
@@ -165,7 +165,8 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
                         <img src="<?php echo isset($resultProfile['photo']) ? "assets/uploads/profile/" . $resultProfile['photo'] : 'assets/uploads/bg1.jpg'; ?>" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-8 content">
-                        <h2 class="mb-5"><?php echo isset($resultProfile['profession']) ? $resultProfile['profession'] : 'Select Profile'; ?></h2>
+                        <h1 class="mb-3"><?php echo isset($resultProfile['name']) ? $resultProfile['name'] : 'Select Profile'; ?></h1>
+                        <h3 class="mb-5"><?php echo isset($resultProfile['profession']) ? $resultProfile['profession'] : 'Select Profile'; ?></h3>
                         <!-- <p class="fst-italic py-3">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
                             magna aliqua.
@@ -175,7 +176,7 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
                                 <ul>
                                     <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span><?php echo isset($resultProfile['birthday']) ? date('d/m/Y', strtotime($resultProfile['birthday'])) : 'Select Profile'; ?></span></li>
                                     <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><?php echo isset($resultProfile['websites']) ? $resultProfile['websites'] : 'Select Profile'; ?></span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?php echo isset($resultProfile['phone']) ? $resultProfile['phone'] : 'Select Profile'; ?></span></li>
+                                    <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?= isset($resultProfile['name']) ? "+62 " . $resultProfile['phone'] : 'Select Profile' ?></span></li>
                                     <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span><?php echo isset($resultProfile['city']) ? $resultProfile['city'] : 'Select Profile'; ?></span></li>
                                 </ul>
                             </div>
@@ -812,7 +813,7 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Contact</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                <p>Should you require further information about me, co-operation or other contributions, please do not hesitate to get in touch. You can contact me at the email address below, or alternatively send me a message via the contact form below.</p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade" data-aos-delay="100">
@@ -905,7 +906,7 @@ $resultProject = mysqli_fetch_all($sqlProject, MYSQLI_ASSOC);
         <div class="container">
             <?php if (isset($resultProfile['name'])) { ?>
                 <h3 class="sitename"><?= $resultProfile['name'] ?></h3>
-                <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+                <p>Success is the result of excellence, hard work, learning from failure, loyalty and perseverance. - Colin Powell</p>
                 <div class="social-links d-flex justify-content-center">
                     <!-- <a href=""><i class="bi bi-twitter-x"></i></a>
                 <a href=""><i class="bi bi-facebook"></i></a> -->

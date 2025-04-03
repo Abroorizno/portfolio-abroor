@@ -1,5 +1,5 @@
 <?php
-$sqlGet = mysqli_query($conn, "SELECT * FROM profile ORDER BY id DESC");
+$sqlGet = mysqli_query($conn, "SELECT * FROM profile WHERE status = 1");
 $result = mysqli_fetch_all($sqlGet, MYSQLI_ASSOC);
 ?>
 

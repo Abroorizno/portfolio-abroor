@@ -164,6 +164,8 @@ if (isset($_GET['delete'])) {
                                                 <th>Email</th>
                                                 <th>Subject</th>
                                                 <th>Messages</th>
+                                                <th>Time Message In</th>
+                                                <th>Time Message Replied/Dismised</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -177,6 +179,8 @@ if (isset($_GET['delete'])) {
                                                 <td><?= $row['email'] ?></td>
                                                 <td><?= $row['subject'] ?></td>
                                                 <td><?= substr($row['message'], 0, 50) ?></td>
+                                                <td><?= date('d/m/Y', strtotime($row['message_in'])) ?></td>
+                                                <td><?= isset($row['message_update']) ? date('d/m/Y', strtotime($row['message_update'])) : "Message Hasn't Replayed!" ?></td>
                                                 <td>
                                                     <!-- <button type="button" class="btn btn-dark" data-id="?page=customer&id<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#modalEdit"> EDIT </button> -->
 
@@ -241,13 +245,13 @@ if (isset($_GET['delete'])) {
                                                                         <label for="nameWithTitle" class="form-label">Messages</label>
                                                                     </div>
                                                                     <div class="col-sm-12">
-                                                                        <textarea name="messages_pengirim" id="messages_pengirim" cols="50" rows="4" class="form-control" readonly><?= $row['message'] ?></textarea>
+                                                                        <textarea name="messages_pengirim" id="messages_pengirim" cols="50" rows="10" class="form-control" readonly><?= $row['message'] ?></textarea>
                                                                     </div>
                                                                 </div>
 
                                                                 <!-- BALASAN -->
                                                                 <hr class="mb-3">
-                                                                <div class="col-sm-6">
+                                                                <div class="col-sm-6 mb-3">
                                                                     <div class="col">
                                                                         <label for="nameWithTitle" class="form-label">Email</label>
                                                                     </div>

@@ -445,7 +445,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     <div class="col">
                                                                         <label for="nameWithTitle" class="form-label">Phone Number</label>
                                                                     </div>
-                                                                    <div class="col-sm-12">
+                                                                    <div class="col-sm-12 input-group input-group-merge">
+                                                                        <span class="input-group-text">+62 </span>
                                                                         <input type="number" name="telp" id="telp" class="form-control" value="<?php echo $row['phone'] ?>" />
                                                                     </div>
                                                                 </div>
