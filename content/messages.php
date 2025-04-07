@@ -179,7 +179,7 @@ if (isset($_GET['delete'])) {
                                                 <td><?= $row['email'] ?></td>
                                                 <td><?= $row['subject'] ?></td>
                                                 <td><?= substr($row['message'], 0, 50) ?></td>
-                                                <td><?= date('d/m/Y', strtotime($row['message_in'])) ?></td>
+                                                <td><?= date('d/m/Y H:i:s', strtotime($row['message_in'])) ?></td>
                                                 <td><?= isset($row['message_update']) ? date('d/m/Y', strtotime($row['message_update'])) : "Message Hasn't Replayed!" ?></td>
                                                 <td>
                                                     <!-- <button type="button" class="btn btn-dark" data-id="?page=customer&id<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#modalEdit"> EDIT </button> -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2025 at 02:33 AM
+-- Generation Time: Apr 07, 2025 at 03:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,8 +57,7 @@ CREATE TABLE `education` (
 
 INSERT INTO `education` (`id`, `year_in`, `year_out`, `name_instansi`, `degree`, `major`, `description`) VALUES
 (1, '2016', '2019', 'AL-BAHRI', 'High School Diploma', 'Software Engineering', 'Berhasil Menyelesaikan Project Program Websites untuk Kesiswaan Sekolah dengan Menggunakan Bahasa PHP Native dan Databases MySQL'),
-(2, '2022', '2026', 'Universitas Tebuka', 'Bachelor Degree', 'Information Systems', 'Mahasiswa Aktif Semester 6'),
-(4, '2026', '2028', 'Imperial College London', 'Master of Informatics', 'Information Systems', 'SEMOGA YAA');
+(2, '2022', '2026', 'Universitas Tebuka', 'Bachelor Degree', 'Information Systems', 'Mahasiswa Aktif Semester 6');
 
 -- --------------------------------------------------------
 
@@ -72,6 +71,8 @@ CREATE TABLE `messages` (
   `email` varchar(100) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `message` text NOT NULL,
+  `message_in` timestamp NOT NULL DEFAULT current_timestamp(),
+  `message_update` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -79,14 +80,8 @@ CREATE TABLE `messages` (
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`, `status`) VALUES
-(4, 'Abroor Rizky', 'datambp@gmail.com', 'TEST', 'TEST', 2),
-(5, 'Jamaludin', 'admin@gmail.com', 'Colaboration', 'TESTING', 2),
-(6, 'Abroor Rizky', 'abroorizno@gmail.com', 'TEST', 'TESTING', 1),
-(7, 'Syaiful', 'syaifulyuzak@gmail.com', 'TEST', 'Halo', 1),
-(8, 'Syaiful Yuzack', 'syaifulyuzak17@gmail.com', 'TEST', 'halo', 1),
-(9, 'Jamaludin', 'datambp@gmail.com', 'TEST', 'TEST', 2),
-(10, 'Reiji', 'admin@gmail.com', 'TEST', 'test', 2);
+INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`, `message_in`, `message_update`, `status`) VALUES
+(1, 'Budi Rie', 'contoh@example.com', 'Colaboration', 'Yth. Abroor Rizky,\r\n\r\nKami tertarik untuk bekerja sama dalam pembangunan website CoreTax. Kami percaya bahwa kolaborasi ini dapat menghasilkan platform yang fungsional, profesional, dan sesuai dengan kebutuhan pengguna.\r\n\r\nKami siap berdiskusi lebih lanjut mengenai konsep, fitur, serta teknis pengembangan agar proyek ini berjalan lancar. Mohon konfirmasi ketersediaan waktu Anda untuk pertemuan atau diskusi lebih lanjut.\r\n\r\nTerima kasih atas perhatian dan kerja samanya.\r\n\r\nSalam,\r\nBudi Rie\r\nDirektorat Payak Republik Wakanda\r\n021-1111111', '2025-04-02 23:57:49', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -136,7 +131,7 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`id`, `name`, `profession`, `birthday`, `websites`, `phone`, `email`, `city`, `photo`, `description`, `background`, `status`) VALUES
-(14, 'Abroor Rizky Nouvaldy', 'Fullstack Web Developers', '2002-01-08', 'www.abroorrizky.com', '082113107659', 'abroorrizky@gmail.com', 'Jakarta, Indonesia', '67dbb68fd5dc0_IMG_4943.JPG', 'I believe that collaboration is the key to success. Lets work together to create something extraordinary', '67de07add6359_7b9937d6-a01a-481d-a47d-856161520193.JPG', 1);
+(14, 'Abroor Rizky Nouvaldy', 'Fullstack Web Developers', '2002-01-08', 'www.abroorrizky.com', '82113107659', 'abroorrizky@gmail.com', 'Jakarta, Indonesia', '67dbb68fd5dc0_IMG_4943.JPG', 'I believe that collaboration is the key to success. Lets work together to create something extraordinary', '67de07add6359_7b9937d6-a01a-481d-a47d-856161520193.JPG', 1);
 
 -- --------------------------------------------------------
 
@@ -178,8 +173,9 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `service_name`, `pict`, `description`) VALUES
-(1, 'Backend Engineering', '67db5fa8b1441_backend.png', 'Membuat TEST'),
-(2, 'Frontend Engineering', '67db5fc36e361_coding.png', 'Membuat TEST');
+(1, 'Frontend Developer', '67db5fa8b1441_backend.png', 'Usually using a PHP, HTML, Laravel and ReactJs'),
+(2, 'Backend Engineering', '67db5fc36e361_coding.png', 'Usually using a Firebase and Mysql'),
+(3, 'Photographer', '67e1fc3229b98_camera.png', 'Experienced in Photography');
 
 -- --------------------------------------------------------
 
@@ -202,7 +198,8 @@ INSERT INTO `skills` (`id`, `skill`, `percent`) VALUES
 (3, 'JavaScript', 40),
 (4, 'HTML', 70),
 (5, 'SQL', 45),
-(6, 'React JS', 30);
+(6, 'React JS', 30),
+(7, 'CSS', 85);
 
 -- --------------------------------------------------------
 
@@ -227,15 +224,17 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(250) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `photo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'Abroor Rizky', 'data@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `photo`) VALUES
+(1, 'Febriana', 'admin@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d', '67edd182c2ad2_IMG_3748.jpg'),
+(2, 'Abroor Rizky', 'data@gmail.com', 'e1340678e66f6f0c98a95f8ecfb7e701a506d410', '67ed28423dd27_20230902140305_IMG_3163.jpeg');
 
 --
 -- Indexes for dumped tables
@@ -321,7 +320,7 @@ ALTER TABLE `education`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `portfolio`
@@ -345,13 +344,13 @@ ALTER TABLE `resume`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `testimoni`
@@ -363,7 +362,7 @@ ALTER TABLE `testimoni`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

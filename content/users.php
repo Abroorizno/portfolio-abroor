@@ -80,9 +80,10 @@ if (isset($_POST['edit'])) {
 
     // Cek apakah password baru diisi
     if (!empty($_POST['password'])) {
-        $password = sha1($_POST['password']);
+        $password = sha1($_POST['password']); // Hash jika diisi
+        $updatePassword = ", password = '$password'"; // Tambahkan ke query update
     } else {
-        $password = $_POST['old_password'];
+        $updatePassword = ""; // Jangan update password jika kosong
     }
 
     $old_photo = $_POST['old_photo'];
@@ -107,7 +108,7 @@ if (isset($_POST['edit'])) {
 
     // print_r($_POST);
     // die;
-    $sql = mysqli_query($conn, "UPDATE users SET username = '$usernama', email = '$email', password = '$password', photo = '$photoName' WHERE id = '$id'");
+    $sql = mysqli_query($conn, "UPDATE users SET username = '$usernama', email = '$email', photo = '$photoName' $updatePassword WHERE id = '$id'");
     if ($sql) {
         echo "<script>window.location.href='?page=users&update=success';</script>";
     } else {
@@ -266,7 +267,7 @@ if (isset($_GET['delete'])) {
                                                         <form action="" method="post" enctype="multipart/form-data">
                                                             <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                                                             <input type="hidden" name="old_photo" value="<?= $row['photo']; ?>">
-                                                            <input type="hidden" name="old_password" value="<?= $row['password'] ?>">
+                                                            <!-- <input type="hidden" name="old_password" value="<?= $row['password'] ?>"> -->
 
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="modalCenterTitle">Users Edit</h5>
@@ -313,7 +314,10 @@ if (isset($_GET['delete'])) {
                                                                         <label for="nameWithTitle" class="form-label">Password</label>
                                                                     </div>
                                                                     <div class="col-sm-12">
-                                                                        <input type="password" name="password" id="password" class="form-control" value="<?php echo $row['password'] ?>" />
+                                                                        <?php $maskedPassword = substr($row['password'], 0, 0) . str_repeat('*', strlen($row['password']) - 5); ?>
+                                                                        <input type="password" name="password" id="password" class="form-control" placeholder="<?= $maskedPassword ?>" />
+
+                                                                        <!-- <input type="password" name="password" id="password" class="form-control" placeholder="<?= $row['password'] ?>" /> -->
                                                                     </div>
                                                                 </div>
                                                             </div>
